@@ -74,6 +74,10 @@ module.exports = function DeviceListCtrl(
       name: 'abi'
     , selected: false
     }
+    , {               // @hy, 2017-12-10: added to fulfill requirement from GG
+      name: 'cpuPlatform'
+    , selected: false
+    }
   , {
       name: 'browser'
     , selected: false

@@ -199,6 +199,12 @@ module.exports = function DeviceColumnService($filter, gettext, UserService) {
         return device.abi || ''
       }
     })
+    , platform: TextCell({  // @HY 2017-12-10 add CPU platform, requirement requested from GG
+      title: gettext('CPU Platform')
+      , value: function(device) {
+        return device.cpuPlatform || ''
+      }
+    })
   , phone: TextCell({
       title: gettext('Phone')
     , value: function(device) {
@@ -658,7 +664,6 @@ function DeviceStatusCell(options) {
   , compare: (function() {
       var order = {
         using: 10
-      , automation: 15
       , available: 20
       , automation: 25   // @HY 2017-06-23 add an order number for devices in automation status
       , busy: 30
