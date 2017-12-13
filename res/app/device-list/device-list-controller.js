@@ -76,7 +76,11 @@ module.exports = function DeviceListCtrl(
     }
     , {               // @hy, 2017-12-10: added to fulfill requirement from GG
       name: 'cpuPlatform'
-    , selected: false
+      , selected: false
+    }
+    , {               // @hy, 2017-12-11: added to fulfill requirement from CXJ
+      name: 'brand'
+      , selected: false
     }
   , {
       name: 'browser'

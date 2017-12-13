@@ -199,10 +199,17 @@ module.exports = function DeviceColumnService($filter, gettext, UserService) {
         return device.abi || ''
       }
     })
-    , platform: TextCell({  // @HY 2017-12-10 add CPU platform, requirement requested from GG
-      title: gettext('CPU Platform')
+    , cpuPlatform: TextCell({  // @HY 2017-12-10 add CPU platform, requirement requested from GG
+     // title: gettext
+     title: gettext('CPU Platform')
       , value: function(device) {
         return device.cpuPlatform || ''
+      }
+    })
+    , brand: TextCell({  // @HY 2017-12-11 add CPU platform, requirement requested from CXJ
+      title: gettext('Brand')
+      , value: function(device) {
+        return device.brand || ''
       }
     })
   , phone: TextCell({
@@ -503,6 +510,7 @@ function DeviceBrowserCell(options) {
       return td
     }
   , update: function(td, device) {
+
       var span = td.firstChild
       var browser = options.value(device)
       var apps = browser.apps.slice().sort(function(appA, appB) {
@@ -591,6 +599,7 @@ function DeviceNameCell(options) {
       return td
     }
   , update: function(td, device) {
+
       var a = td.firstChild
       var t = a.firstChild
 
