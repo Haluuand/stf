@@ -23,12 +23,12 @@ var user = null
 // 2017-11-11 @HY only admin user can edit device note
 module.exports = function DeviceColumnService($filter, gettext, UserService) {
   user = UserService.currentUser
-
   // Definitions for all possible values.
   return {
     state: DeviceStatusCell({
       title: gettext('Status')
     , value: function(device) {
+        console.log("+++++++++++ ", device)
         return $filter('translate')(device.enhancedStateAction)
       }
     })
@@ -198,20 +198,25 @@ module.exports = function DeviceColumnService($filter, gettext, UserService) {
     , value: function(device) {
         return device.abi || ''
       }
-    })
-    , cpuPlatform: TextCell({  // @HY 2017-12-10 add CPU platform, requirement requested from GG
-     // title: gettext
-     title: gettext('CPU Platform')
-      , value: function(device) {
+   })
+   , cpuPlatform: TextCell({
+       title: gettext('CPU Platform')
+       , value: function(device) {
         return device.cpuPlatform || ''
-      }
-    })
-    , brand: TextCell({  // @HY 2017-12-11 add CPU platform, requirement requested from CXJ
+       }
+   })
+   , brand: TextCell({  // @HY 2017-12-11 add Brand, requirement requested from CXJ
       title: gettext('Brand')
-      , value: function(device) {
+      , value: function (device) {
         return device.brand || ''
       }
-    })
+  })
+  , openGLESVersion: TextCell({
+      title: gettext('OpenGL ES')
+    , value: function(device) {
+        return device.openGLESVersion || ''
+      }
+  })
   , phone: TextCell({
       title: gettext('Phone')
     , value: function(device) {

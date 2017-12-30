@@ -74,18 +74,22 @@ module.exports = function DeviceListCtrl(
       name: 'abi'
     , selected: false
     }
-    , {               // @hy, 2017-12-10: added to fulfill requirement from GG
+  , {               // @hy, 2017-12-10: added to fulfill requirement from GG
       name: 'cpuPlatform'
       , selected: false
-    }
-    , {               // @hy, 2017-12-11: added to fulfill requirement from CXJ
+  }
+  , {               // @hy, 2017-12-11: added to fulfill requirement from CXJ
       name: 'brand'
       , selected: false
-    }
+  }
+  , {
+      name: 'openGLESVersion'
+    , selected: false
+  }
   , {
       name: 'browser'
     , selected: false
-    }
+  }
   , {
       name: 'phone'
     , selected: false
