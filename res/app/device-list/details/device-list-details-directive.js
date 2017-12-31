@@ -358,6 +358,10 @@ module.exports = function DeviceListDetailsDirective(
         }
 
         for (var i = 0, l = activeColumns.length; i < l; ++i) {
+          if (scope.columnDefinitions[activeColumns[i]] == null
+               || scope.columnDefinitions[activeColumns[i]].build == null)
+            continue
+
           td = scope.columnDefinitions[activeColumns[i]].build()
           scope.columnDefinitions[activeColumns[i]].update(td, device)
           tr.appendChild(td)
@@ -415,6 +419,9 @@ module.exports = function DeviceListDetailsDirective(
         }
 
         for (var i = 0, l = activeColumns.length; i < l; ++i) {
+          if (scope.columnDefinitions[activeColumns[i]] == null)
+            continue
+
           scope.columnDefinitions[activeColumns[i]].update(tr.cells[i], device)
         }
 
