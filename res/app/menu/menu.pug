@@ -15,6 +15,9 @@
         a(ng-href='/#!/statistics', accesskey='1')
           span.fa.fa-pie-chart
           span(ng-if='!$root.basicMode', translate) Statistics
+        a(ng-href='/romFinder', target='_blank', accesskey='1')
+            span.fa.fa-android
+            span(ng-if='!$root.basicMode', translate) ROM
         a(ng-href='/#!/settings')
           span.fa.fa-gears
           span(ng-if='!$root.basicMode', translate) Settings
@@ -30,6 +33,6 @@
           | {{currentUser.name}}
 
       li(ng-show='!$root.basicMode')
-        a(ng-href='/#!/help', accesskey='6')
+        a(ng-href='/help', target='_blank', accesskey='6')
           i.fa.fa-question-circle.fa-fw
           | {{ "Help" | translate }}
