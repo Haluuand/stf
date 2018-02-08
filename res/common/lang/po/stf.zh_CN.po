@@ -627,6 +627,10 @@ msgstr "锁定屏幕旋转"
 msgid "Logs"
 msgstr "日志"
 
+#: /app/menu/menu.pug:38
+msgid "Logout"
+msgstr "退出"
+
 #: app/control-panes/advanced/maintenance/maintenance.html:1
 msgid "Maintenance"
 msgstr "维护"

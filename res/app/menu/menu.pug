@@ -32,6 +32,11 @@
           i.fa.fa-user.fa-fw
           | {{currentUser.name}}
 
+      li
+        a(ng-href='/auth/mock/')
+          i.fa.fa-sign-out.fa-fw
+          | {{ "Logout" | translate }}
+
       li(ng-show='!$root.basicMode')
         a(ng-href='/help', target='_blank', accesskey='6')
           i.fa.fa-question-circle.fa-fw
