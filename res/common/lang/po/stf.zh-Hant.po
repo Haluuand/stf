@@ -1468,7 +1468,7 @@ msgstr "Usb 速度"
 
 #: app/components/stf/device/device-info-filter/index.js:13
 msgid "Use"
-msgstr "使用"
+msgstr "可使用"
 
 #: app/device-list/column/device-column-service.js:262
 msgid "User"
