@@ -436,6 +436,38 @@ paths:
             $ref: '#/definitions/ErrorResponse'
       security:
         - accessTokenAuth: []
+  '/device':
+    x-swagger-router-controller: devices
+    get:
+      summary: Device Information
+      description: The device enpoint return information about a single device
+      operationId: getDeviceByInventoryID
+      tags:
+        - devices
+      parameters:
+        - name: inventoryID
+          in: query
+          description: Device Inventory ID
+          required: true
+          type: string
+        - name: fields
+          in: query
+          description: >-
+            Fields query parameter takes a comma seperated list of fields. Only
+            listed field will be return in response
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Device Information
+          schema:
+            $ref: '#/definitions/DeviceResponse'
+        default:
+          description: Unexpected Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+        - accessTokenAuth: []
   '/testings/{status}':
     x-swagger-router-controller: testing
     post:
