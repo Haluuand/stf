@@ -92,6 +92,8 @@ module.exports = function LogcatServiceFactory(socket, FilterStringService) {
 
   socket.on('logcat.entry', function(rawData) {
     service.numberOfEntries++
+    console.log("[DEBUG] logcat +++ ", service.numberOfEntries)
+
     service.entries.push(enhanceEntry(rawData))
 
     if (typeof (service.addEntryListener) === 'function') {
