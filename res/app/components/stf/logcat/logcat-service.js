@@ -83,7 +83,9 @@ module.exports = function LogcatServiceFactory(socket, FilterStringService) {
       _s.pad(date.getSeconds(), 2, '0') + '.' +
       _s.pad(date.getMilliseconds(), 3, '0')
 
-    data.deviceLabel = 'Android'
+    // data.deviceLabel = 'Android'
+    data.deviceLabel = data.serial
+
 
     data.priorityLabel = logLevelsCapitalized[data.priority]
 
@@ -92,7 +94,6 @@ module.exports = function LogcatServiceFactory(socket, FilterStringService) {
 
   socket.on('logcat.entry', function(rawData) {
     service.numberOfEntries++
-    console.log("[DEBUG] logcat +++ ", service.numberOfEntries)
 
     service.entries.push(enhanceEntry(rawData))
 

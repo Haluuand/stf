@@ -68,8 +68,8 @@ module.exports =
 
           //newRow.insertCell(-1)
           //  .appendChild(document.createTextNode(LogcatService.numberOfEntries))
-          //newRow.insertCell(-1)
-          //  .appendChild(document.createTextNode(data.deviceLabel))
+          newRow.insertCell(-1)
+            .appendChild(document.createTextNode(data.deviceLabel))
           newRow.insertCell(-1)
             .appendChild(document.createTextNode(data.priorityLabel))
           newRow.insertCell(-1)
