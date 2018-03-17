@@ -20,6 +20,15 @@
   cursor: not-allowed;
 }
 
+.stf-device-list .device-need-maintain {
+  background: lightgoldenrodyellow;
+}
+
+.stf-device-list .device-high-temperature {
+  background: orangered;
+  opacity: 0.9;
+}
+
 .stf-device-list .devices-not-available {
   background: #f6f6f6;
 }

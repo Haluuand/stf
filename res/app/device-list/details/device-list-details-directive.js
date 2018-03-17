@@ -21,6 +21,10 @@ module.exports = function DeviceListDetailsDirective(
     , filter: '&filter'
     }
   , link: function(scope, element) {
+
+      const OneWeek = 1 * 7 * 24 * 3600 * 1000
+      const MaxTemp = 40
+
       var tracker = scope.tracker()
       var activeColumns = []
       var activeSorting = []
@@ -31,6 +35,7 @@ module.exports = function DeviceListDetailsDirective(
       var prefix = 'd' + Math.floor(Math.random() * 1000000) + '-'
       var mapping = Object.create(null)
       var childScopes = Object.create(null)
+
 
       function kickDevice(device, force) {
         return GroupService.kick(device, force).catch(function(e) {
@@ -354,7 +359,20 @@ module.exports = function DeviceListDetailsDirective(
         tr.id = id
 
         if (!device.usable) {
-          tr.classList.add('device-not-usable')
+          var currentTime = new Date()
+          var presenceChangedAt = device.presenceChangedAt ? new Date(device.presenceChangedAt) : null
+          if (presenceChangedAt !== null && currentTime - presenceChangedAt <= OneWeek) {
+            tr.classList.add('device-need-maintain')
+          }
+          else {
+            tr.classList.add('device-not-usable')
+          }
+        }
+        else {
+          var batteryTemp = device.enhancedBatteryTemp || 0;
+          batteryTemp = batteryTemp.match(/[0-9]+/)[0] || 0
+          if (batteryTemp > MaxTemp)
+            tr.classList.add('device-need-maintain')
         }
 
         for (var i = 0, l = activeColumns.length; i < l; ++i) {
@@ -412,10 +430,23 @@ module.exports = function DeviceListDetailsDirective(
         tr.id = id
 
         if (!device.usable) {
-          tr.classList.add('device-not-usable')
+          var currentTime = new Date()
+          var presenceChangedAt = device.presenceChangedAt ? new Date(device.presenceChangedAt) : null
+          if (presenceChangedAt !== null && currentTime - presenceChangedAt <= OneWeek) {
+            tr.classList.add('device-need-maintain')
+          }
+          else {
+            tr.classList.add('device-not-usable')
+          }
         }
         else {
           tr.classList.remove('device-not-usable')
+          tr.classList.remove('device-need-maintain')
+
+          var batteryTemp = device.enhancedBatteryTemp || 0;
+          batteryTemp = batteryTemp.match(/[0-9]+/)[0] || 0
+          if (batteryTemp > MaxTemp)
+            tr.classList.add('device-need-maintain')
         }
 
         for (var i = 0, l = activeColumns.length; i < l; ++i) {
