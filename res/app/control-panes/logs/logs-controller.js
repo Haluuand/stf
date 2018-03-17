@@ -20,9 +20,15 @@ module.exports = function LogsCtrl($scope, LogcatService) {
     }
   })
 
+  // make button sync with status of device 2018-03-17 thinkhy
+  $scope.$on('kickDevice', function(device) {
+    $scope.started = false
+  })
+
   window.onbeforeunload = function() {
     if ($scope.control) {
       $scope.control.stopLogcat()
+      $scope.started = false
     }
   }
 

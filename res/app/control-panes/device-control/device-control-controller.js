@@ -20,6 +20,9 @@ module.exports = function DeviceControlCtrl($scope, DeviceService, GroupService,
       // If we're trying to kick current device
       if (device.serial === $scope.device.serial) {
 
+        // 2018-03-17
+        $rootScope.$broadcast("kickDevice", device)
+
         // If there is more than one device left
         if ($scope.groupDevices.length > 1) {
 
