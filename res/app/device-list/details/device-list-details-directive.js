@@ -361,7 +361,7 @@ module.exports = function DeviceListDetailsDirective(
         if (!device.usable) {
           var currentTime = new Date()
           var presenceChangedAt = device.presenceChangedAt ? new Date(device.presenceChangedAt) : null
-          if (presenceChangedAt !== null && currentTime - presenceChangedAt <= OneWeek) {
+          if (device.using === false && presenceChangedAt !== null && currentTime - presenceChangedAt <= OneWeek) {
             tr.classList.add('device-need-maintain')
           }
           else {
