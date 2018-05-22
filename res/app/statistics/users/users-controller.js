@@ -94,21 +94,24 @@ module.exports = function UserStatCtrl(
   var colors = d3.range(100).map(d3.scale.category20())
 
   $scope.drawBarChart = function(lables,dataset,panel){
+
+    //lables = ['苹果苹果苹果苹果苹果苹果','华为','三星'];
+    //dataset = [100,231,221];
     // 定义图表的间距
-    var margin = {top: 30, right: 100, bottom: 30, left: 100}
-    var w = 600 - margin.left - margin.right
+    var margin = {top: 30, right: 40, bottom: 30, left: 140}
+    var w = 680 - margin.left - margin.right
     var h = Math.max(400,dataset.length*20) - margin.top - margin.bottom;
 
     // 定义x轴和y轴
     var y = d3.scale.ordinal()
-      .rangeRoundBands([0,h],0.2,0);
+      .rangeRoundBands([0,h],0.2);
 
     // console.log('label',lables)
     y.domain(lables.map(function(d) { return d; }));
 
     var x = d3.scale.linear()
       .range([0,w]);
-    x.domain([0, d3.max(dataset, function(d) { return d; })]);
+    x.domain([0, d3.max([10,d3.max(dataset, function(d) { return d; })])]);
 
     var formatPercent = d3.format(".0");
     var xAxis = d3.svg.axis()
@@ -126,15 +129,6 @@ module.exports = function UserStatCtrl(
       .attr("height", h + margin.top + margin.bottom)
       .append("g")
       .attr("transform", "translate(" + margin.left + ", " + margin.top + ")");
-
-    svg.append("g")
-      .attr("class", "x axis")
-      .attr("transform", "translate(0, " + h + ")")
-      .call(xAxis);
-
-    svg.append("g")
-      .attr("class", "y axis")
-      .call(yAxis);
 
     svg.selectAll(".bar")
       .data(dataset)
@@ -161,7 +155,16 @@ module.exports = function UserStatCtrl(
       })
       .text(function(d){return d.toFixed(2)})
 
-    svg.append('text').attr('x',w+10).attr('y',h+5).text('单位(小时)')
-    svg.append('text').attr('x',-20).attr('y',-10).text('用户名')
+    svg.append("g")
+      .attr("class", "x axis")
+      .attr("transform", "translate(0, " + h + ")")
+      .call(xAxis);
+
+    svg.append("g")
+      .attr("class", "y axis")
+      .call(yAxis);
+
+    svg.append('text').attr('x',w+20).attr('y',h+5).text('单位(小时)')
+    svg.append('text').attr('x',-20).attr('y',-20).text('用户名')
   }
 }

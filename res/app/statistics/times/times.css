@@ -42,6 +42,11 @@
 .bar{
   cursor: pointer;
 }
+.bar:hover{
+  stroke : #999999;
+  stroke-width: 1;
+  stroke-dasharray:  2;
+}
 
 #horizontal-line{
   stroke : #999999;
@@ -50,4 +55,8 @@
 }
 .axis-label{
   font-size: 12px;
+}
+.inner_line path, .inner_line line { fill: none; stroke:#E7E7E7; shape-rendering: crispEdges; }
+.drag{
+  cursor: pointer;
 }
