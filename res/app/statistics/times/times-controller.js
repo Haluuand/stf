@@ -79,8 +79,8 @@ module.exports = function UserStatCtrl(
     // 根据range差，计算数据是不是在范围之内
     var range_type = x_conf['type'];
     if (range_type == d3.time.hours){
-      com_start = new Date(new Date(start).setHours(0,0,0,0));
-      com_end = new Date(new Date(end).setHours(0,0,0,0));
+      com_start = new Date(start);
+      com_end = new Date(end);
     }else if(range_type == d3.time.day){
       com_start = new Date(new Date(start).setHours(0,0));
       com_end = new Date(new Date(end).setHours(23,59));
@@ -158,7 +158,7 @@ module.exports = function UserStatCtrl(
       .call(yAxis);
 
     var time_range = x_conf['range']/w;
-    var total_range_length = ((max_time-min_time)*w)/x_conf['range'];
+    var total_range_length = d3.max([((max_time-min_time)*w)/x_conf['range'],w]);
 
     // 定义拖拽函数
     var drag = d3.behavior.drag()
@@ -175,7 +175,7 @@ module.exports = function UserStatCtrl(
         d3.select(this).attr('x',d3.event.x);
         d3.select(this).attr('y',0);
         time_range = x_conf['range']/w;
-        var start = min_time.getTime() - time_range*d3.event.x;
+        var start = min_time- time_range*d3.event.x;
         var end = getEndTime(new Date(start));
         // 更新图表
         $scope.updateTimeLine(new Date(start),new Date(end));
@@ -305,6 +305,7 @@ module.exports = function UserStatCtrl(
     var xScale = d3.time.scale()
       .domain([start,end])
       .range([0,w]);
+
     // 更新X轴
     var xAxis = d3.svg.axis()
       .scale(xScale)
@@ -406,7 +407,8 @@ module.exports = function UserStatCtrl(
       var end = getEndTime(min);
 
       // 清空drag的位移
-      svg.select('.drag').attr('x','0');
+      var total_range_length = d3.max([((max_time-min_time)*w)/x_conf['range'],w]);
+      svg.select('.drag').attr('x','0').attr('width',total_range_length);
 
       // 更新数据
       $scope.updateTimeLine(min, end);
