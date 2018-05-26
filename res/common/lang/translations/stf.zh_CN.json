@@ -380,6 +380,7 @@
     "Statistics" : "统计",
     "Users" : "用户",
     "Providers" : "设备组",
-    "OK" : "确定"
+    "OK" : "确定",
+    "Performance Testing": "性能测试"
   }
 }

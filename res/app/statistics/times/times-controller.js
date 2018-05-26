@@ -43,7 +43,7 @@ module.exports = function UserStatCtrl(
   var svg;
   var datasets;
 
-  var barWidth = 30;
+  var barWidth = 20;
   var colors = d3.range(100).map(d3.scale.category20());
 
   // 时间常量
@@ -131,6 +131,7 @@ module.exports = function UserStatCtrl(
     var yScale = d3.scale.linear()
       .domain([0,d3.max(datasets,function(d){return d.long})])
       .range([h,0]);
+
     // 创建x轴坐标
     var xAxis = d3.svg.axis()
       .scale(xScale)
@@ -198,8 +199,9 @@ module.exports = function UserStatCtrl(
 
     // 添加数据组
     var groups = panel.selectAll('.group')
-      .data(visiable_datasets)
-      .enter()
+      .data(visiable_datasets);
+    groups.exit().remove();
+    groups.enter()
       .append('g')
       .attr('class','group');
 
@@ -249,8 +251,8 @@ module.exports = function UserStatCtrl(
       .text(function(d){
         return d.long.toFixed(2);
       })
-      .attr('textLength',barWidth)
-      .attr('lengthAdjust','spacing');
+      //.attr('textLength',barWidth)
+      //.attr('lengthAdjust','spacing');
     // 添加x轴的维度标注
     svg.append("text")
       .attr('class','axis-label')
@@ -377,8 +379,8 @@ module.exports = function UserStatCtrl(
       .text(function(d){
         return d.long.toFixed(2);
       })
-      .attr('textLength',barWidth)
-      .attr('lengthAdjust','spacing');
+      //.attr('textLength',barWidth)
+      //.attr('lengthAdjust','spacing');spacing
   };
 
   $scope.getStatData = function(params){

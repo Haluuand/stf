@@ -39,6 +39,12 @@ module.exports =
         icon: 'fa-info color-orange',
         templateUrl: 'control-panes/info/info.pug',
         filters: ['native', 'web']
+      },
+      {
+        title: gettext('Performance Testing'),
+        icon: 'fa fa-rocket color-blue',
+        templateUrl: 'control-panes/performance-testing/testing.pug',
+        filters: ['native', 'web']
       }
     ]
 
