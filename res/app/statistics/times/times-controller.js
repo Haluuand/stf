@@ -138,7 +138,7 @@ module.exports = function UserStatCtrl(
       .orient('bottom')
       .ticks(d3.time.hours, 1)
       .tickSize(10)
-      .tickFormat(d3.time.format('%m-%d'));
+      .tickFormat(d3.time.format('%H-%M'));
 
     // 创建y轴坐标
     var yAxis = d3.svg.axis()
