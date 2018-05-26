@@ -55,7 +55,7 @@ module.exports = function UserStatCtrl(
   // 刻度类型，数据源，最大最小时间 三个变量都会发生变化的时候
   var DATA_TYPES = {
     '0' : {'type': d3.time.hours, 'format': '%H:%M','range': DAY_MS,'unit': HOUR_MS},
-    '1' : {'type': d3.time.day, 'format': '%m-%d', 'range': MONTH_MS,'unit': DAY_MS},
+    '1' : {'type': d3.time.day, 'format': '%m-%d', 'range': MONTH_MS/2,'unit': DAY_MS},
     '2' : {'type': d3.time.month, 'format': '%Y-%m', 'range' : YEAR_MS,'unit': MONTH_MS}
   };
 
