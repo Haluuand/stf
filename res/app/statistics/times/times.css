@@ -25,6 +25,12 @@
   stroke: black;
   shape-rendering: crispEdges;
 }
+.y.axis line{
+  stroke : #999;
+  stroke-width: 1;
+  stroke-dasharray:  5;
+}
+
 .axis text{
   font-size: 10px;
   /*stroke: #333;*/
@@ -56,7 +62,7 @@
 .axis-label{
   font-size: 12px;
 }
-.inner_line path, .inner_line line { fill: none; stroke:#E7E7E7; shape-rendering: crispEdges; }
+.inner_line path, .inner_line line { fill: none; stroke:#E7E7E7;stroke-dasharray:  5; }
 .drag{
   cursor: pointer;
 }

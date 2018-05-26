@@ -145,18 +145,18 @@ module.exports = function UserStatCtrl(
       .scale(yScale)
       .orient('left')
       .tickSize(-w,0,0);
+    
+    // 绘制y轴
+    svg.append('g')
+      .attr('class','y axis')
+      .attr('transform','translate('+padding+','+padding+')')
+      .call(yAxis);
 
     // 绘制x轴
     svg.append('g')
       .attr('class','x axis')
       .attr('transform','translate('+padding+','+(h+padding)+')')
       .call(xAxis);
-
-    // 绘制y轴
-    svg.append('g')
-      .attr('class','y axis')
-      .attr('transform','translate('+padding+','+padding+')')
-      .call(yAxis);
 
     var time_range = x_conf['range']/w;
     var total_range_length = d3.max([((max_time-min_time)*w)/x_conf['range'],w]);
