@@ -30,6 +30,7 @@ module.exports = function UserStatCtrl(
   };
 
   $scope.getStatData = function(params){
+    $scope.request_loading = true;
     //@chenhao 缓存每次请求的参数
     sessionStorage.setItem('STAT_TEST_PARAMS', JSON.stringify(params));
     $http({
@@ -39,10 +40,8 @@ module.exports = function UserStatCtrl(
     }).success(function(response){
       var labels = response['labels']
       var dataset = response['dataset']
-      //labels = ['xx1','xx2','xxx3','xxx4','xxx5','xxx6','xxx7','xxx8','xxx9','xxx10','xxx11','xxx12','xxx13','xxx14','xxx15','xxx16','xxx17','xxx18','xxx19','xxx20','xx21','xx22','xxx23','xxx24','xxx25','xxx26','xxx27','xxx28','xxx29','xxx30','xx31','xx32','xxx33','xxx34','xxx35','xxx36','xxx37','xxx38','xxx39','xxx40']
-      //dataset = [20,22.2,43,12,28,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5,1,2,3,4,5]
-
-      var panel = 'bar_chart_user'
+      $scope.request_loading = false;
+      var panel = 'bar_chart_user';
       $scope.drawBarChart(labels,dataset,panel)
     })
   };

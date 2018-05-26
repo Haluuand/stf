@@ -17,5 +17,10 @@ div.page-controller(ng-controller='UserStatCtrl')
 
   div#chart_panel_full
     div.chart_container
-      h5 用户和设备使用时长的统计图
-      div#bar_chart_user
+      h5(ng-show='!request_loading') 用户和设备使用时长的统计图
+      div.process(ng-show='request_loading')
+        div.spinner
+          div.double-bounce1
+          div.double-bounce2
+        div.process-title 正在查询数据，请稍候
+      div#bar_chart_user(ng-show='!request_loading')

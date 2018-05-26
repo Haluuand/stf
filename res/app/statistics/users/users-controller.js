@@ -30,6 +30,7 @@ module.exports = function UserStatCtrl(
   };
 
   $scope.getStatData = function(params){
+    $scope.request_loading = true;
     //@chenhao 缓存每次请求的参数
     sessionStorage.setItem('STAT_USER_PARAMS', JSON.stringify(params));
     $http({
@@ -37,9 +38,10 @@ module.exports = function UserStatCtrl(
       url:'/api/v1/stat/name/',
       data: params
     }).success(function(response){
-      var labels = response['labels']
-      var dataset = response['dataset']
-      var panel = 'bar_chart_user'
+      var labels = response['labels'];
+      var dataset = response['dataset'];
+      var panel = 'bar_chart_user';
+      $scope.request_loading = false;
       $scope.drawBarChart(labels,dataset,panel)
     })
   };

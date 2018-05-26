@@ -40,6 +40,7 @@ module.exports = function DeviceStatCtrl(
   };
 
   $scope.getStatData = function(params){
+    $scope.request_loading = true;
     //@chenhao 缓存每次请求的参数
     sessionStorage.setItem('STAT_DEVICE_PARAMS', JSON.stringify(params));
     var type = TYPE_HASH[$scope.active_type_index]
@@ -48,9 +49,10 @@ module.exports = function DeviceStatCtrl(
       url:'/api/v1/stat/'+type+'/',
       data: params
     }).success(function(response){
-      var labels = response['labels']
-      var dataset = response['dataset']
-      var panel = 'bar_chart_device'
+      var labels = response['labels'];
+      var dataset = response['dataset'];
+      var panel = 'bar_chart_device';
+      $scope.request_loading = false;
       $scope.drawBarChart(labels,dataset,panel)
     })
   };
