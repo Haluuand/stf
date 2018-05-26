@@ -201,7 +201,7 @@ module.exports = function UserStatCtrl(
     var visiable_datasets = [];
     datasets.forEach(function(item){
       // 根据range差，计算数据是不是在范围之内
-      if (new Date(item.time) >= start_time && new Date(item.time) <= end_time){
+      if (new Date(item.time) > start_time && new Date(item.time) < end_time){
         visiable_datasets.push(item);
       }
     });
