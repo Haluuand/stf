@@ -97,6 +97,7 @@ module.exports = function UserStatCtrl(
     'type': $scope.types[$scope.active_type_index]
   };
 
+  $scope.request_loading = true;
   // 默认数据来源
   $http({
     method:'post',
@@ -106,6 +107,7 @@ module.exports = function UserStatCtrl(
     var stats = response['stats'];
     var panel = 'bar_chart_user';
     datasets = stats;
+    $scope.request_loading = false;
 
     // 创建画布
     svg = d3.select('#timeline')
@@ -390,6 +392,7 @@ module.exports = function UserStatCtrl(
 
   $scope.getStatData = function(params){
     //@chenhao 缓存每次请求的参数
+    $scope.request_loading = true;
     sessionStorage.setItem('STAT_USER_PARAMS', JSON.stringify(params));
     $http({
       method:'post',
@@ -401,7 +404,8 @@ module.exports = function UserStatCtrl(
       var type = $scope.active_type_index;
       var min = $scope.min_time;
       var max = $scope.max_time;
-      var data = stats
+      var data = stats;
+      $scope.request_loading = false;
 
       // 根据type确定X轴的刻度，间隔等
       x_conf = DATA_TYPES[type];
@@ -424,7 +428,10 @@ module.exports = function UserStatCtrl(
 
   // 切换维度type的显示
   $scope.showActiveType = function (obj) {
-    var type_index = obj.$index
+    var type_index = obj.$index;
+    if ($scope.request_loading){
+      return;
+    }
     $scope.active_type_index = type_index
     $scope.submitQuery()
   }
@@ -434,6 +441,10 @@ module.exports = function UserStatCtrl(
     // 检查开始时间和结束时间的输入
     var min_time = $scope.min_time
     var max_time = $scope.max_time
+
+    if ($scope.request_loading){
+      return;
+    }
 
     // 检查开始时间和结束时间
     if (min_time>max_time){
