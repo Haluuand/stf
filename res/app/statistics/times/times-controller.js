@@ -145,7 +145,7 @@ module.exports = function UserStatCtrl(
       .scale(yScale)
       .orient('left')
       .tickSize(-w,0,0);
-    
+
     // 绘制y轴
     svg.append('g')
       .attr('class','y axis')
@@ -159,7 +159,6 @@ module.exports = function UserStatCtrl(
       .call(xAxis);
 
     var time_range = x_conf['range']/w;
-    var total_range_length = d3.max([((max_time-min_time)*w)/x_conf['range'],w]);
 
     // 定义拖拽函数
     var drag = d3.behavior.drag()
@@ -171,8 +170,16 @@ module.exports = function UserStatCtrl(
         };
       })
       .on('drag',function(){
+        var total_range_length = d3.max([((max_time-min_time)*w)/x_conf['range'],w]);
         // 被拖动的对象移动
         console.log('正在拖动',d3.event.x)
+        if (d3.event.x>0){
+          d3.select(this).attr('x',0);
+          return;
+        }else if (d3.event.x <= -(total_range_length-w)){
+          d3.select(this).attr('x',-(total_range_length-w));
+          return;
+        }
         d3.select(this).attr('x',d3.event.x);
         d3.select(this).attr('y',0);
         time_range = x_conf['range']/w;
@@ -250,9 +257,8 @@ module.exports = function UserStatCtrl(
       })
       .text(function(d){
         return d.long.toFixed(2);
-      })
-      //.attr('textLength',barWidth)
-      //.attr('lengthAdjust','spacing');
+      });
+
     // 添加x轴的维度标注
     svg.append("text")
       .attr('class','axis-label')
@@ -267,6 +273,7 @@ module.exports = function UserStatCtrl(
       .text('单位（小时）');
 
     // 添加拖拽的表面层
+    var total_range_length = d3.max([((max_time-min_time)*w)/x_conf['range'],w]);
     svg.append('rect')
       .attr('width',total_range_length)
       .attr('height',h)
@@ -378,9 +385,7 @@ module.exports = function UserStatCtrl(
       })
       .text(function(d){
         return d.long.toFixed(2);
-      })
-      //.attr('textLength',barWidth)
-      //.attr('lengthAdjust','spacing');spacing
+      });
   };
 
   $scope.getStatData = function(params){
