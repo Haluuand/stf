@@ -1,8 +1,13 @@
 div.page-controller(ng-controller='PerformanceTestingCtrl')
 
-  div
-    stacked-icon(icon='fa-tablet', color='color-blue')
-    span
-      b 性能测试
+  div.testing-title-wrapper
+    h3.testing-title 性能测试
+    button.btn.btn-sm.btn-danger.pull-right(ng-click="stopRecord()") 结束
+    button.btn.btn-sm.btn-success.pull-right(ng-click="startRecord()") 开始
+
+  h4 CPU性能测试结果
+  div#cpu
+  h4 Memory性能测试结果
+  div#memory
 
 

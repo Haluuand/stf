@@ -1,0 +1,71 @@
+#cpu svg,
+#memory svg{
+  background-color: #000;
+}
+#cpu .axis path,
+#cpu .axis line,
+#memory .axis path,
+#memory .axis line{
+  fill: none;
+  stroke: #60c561;
+  shape-rendering: crispEdges;
+  stroke-dasharray:0px;
+  stroke-width: 1;
+}
+
+#cpu .axis text,
+#memory .axis text{
+  font-size: 10px;
+  stroke: node;
+  fill: #ddd;
+  color: #fff;
+}
+
+/*.testing-title-wrapper .axis path,*/
+/*.testing-title-wrapper .axis line{*/
+  /*fill: none;*/
+  /*stroke: #fff;*/
+  /*shape-rendering: crispEdges;*/
+/*}*/
+/*.axis text{*/
+  /*font-size: 10px;*/
+  /*stroke: node;*/
+  /*fill: #ddd;*/
+  /*font-weight: 100;*/
+  /*font-family: "微软雅黑";*/
+/*}*/
+/*#tooltip{*/
+  /*color: #000;*/
+  /*font-size: 12px;*/
+/*}*/
+/*.label{*/
+  /*font-size: 12px;*/
+/*}*/
+/*.bar{*/
+  /*cursor: pointer;*/
+/*}*/
+/*#horizontal-line{*/
+  /*stroke : #999999;*/
+  /*stroke-width: 1;*/
+  /*stroke-dasharray:  5;*/
+/*}*/
+/*.axis-label{*/
+  /*font-size: 12px;*/
+/*}*/
+/*.drag{*/
+  /*cursor: move;*/
+/*}*/
+/*.x.axis .tick line,*/
+/*.y.axis .tick line{*/
+  /*fill: none;*/
+  /*stroke-width: 1;*/
+  /*stroke: #60c561;*/
+/*}*/
+/*.testing-title-wrapper{*/
+  /*border-bottom: 1px solid #ddd;*/
+  /*margin-bottom: 15px;*/
+/*}*/
+/*.testing-title{*/
+  /*display: inline-block;*/
+  /*width: 100px;*/
+/*}*/
