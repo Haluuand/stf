@@ -1,4 +1,4 @@
-FROM ubuntu:16.04
+ FROM ubuntu:16.04
 
 # Sneak the stf executable into $PATH.
 ENV PATH /app/bin:$PATH
