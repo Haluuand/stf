@@ -389,6 +389,12 @@ paths:
             listed field will be return in response
           required: false
           type: string
+        - name: selector
+          in: query
+          description: >-
+            Selector will be used to query device list from DB
+          required: false
+          type: string
       responses:
         '200':
           description: List of Devices
