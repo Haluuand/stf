@@ -215,6 +215,37 @@ paths:
             $ref: '#/definitions/ErrorResponse'
       security:
         - accessTokenAuth: []
+    delete:
+      summary: Delete User Device
+      description: >-
+        The User Devices endpoint will request for device release from stf
+        server. It will return request accepted if device is being used by
+        current user
+      operationId: deleteUserDeviceBySelector
+      tags:
+        - user
+      parameters:
+        - name: fields
+          in: query
+          description: >-
+            Fields query parameter takes a comma seperated list of fields. Only
+            listed field will be return in response
+          required: false
+          type: string
+        - name: selector
+          in: query
+          description: Selector to filter devices
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Delete User Device Status
+        default:
+          description: Unexpected Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+        - accessTokenAuth: []    
   '/user/devices/{serial}':
     x-swagger-router-controller: user
     get:
