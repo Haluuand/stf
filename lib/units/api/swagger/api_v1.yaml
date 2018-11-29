@@ -215,6 +215,37 @@ paths:
             $ref: '#/definitions/ErrorResponse'
       security:
         - accessTokenAuth: []
+    delete:
+      summary: Delete User Device
+      description: >-
+        The User Devices endpoint will request for device release from stf
+        server. It will return request accepted if device is being used by
+        current user
+      operationId: deleteUserDeviceBySelector
+      tags:
+        - user
+      parameters:
+        - name: fields
+          in: query
+          description: >-
+            Fields query parameter takes a comma seperated list of fields. Only
+            listed field will be return in response
+          required: false
+          type: string
+        - name: selector
+          in: query
+          description: Selector to filter devices
+          required: false
+          type: string
+      responses:
+        '200':
+          description: Delete User Device Status
+        default:
+          description: Unexpected Error
+          schema:
+            $ref: '#/definitions/ErrorResponse'
+      security:
+        - accessTokenAuth: []    
   '/user/devices/{serial}':
     x-swagger-router-controller: user
     get:
@@ -340,16 +371,12 @@ paths:
             $ref: '#/definitions/ErrorResponse'
       security:
         - accessTokenAuth: []
-  /user/adbPublicKeys:
+  /user/adbkeys:
     x-swagger-router-controller: user
     post:
       summary: Adb public keys
       description: Add adb public key for current user
       operationId: addAdbPublicKey
-      consumes:
-      - application/json
-      produces:
-      - application/json
       tags:
         - user
       parameters:
@@ -358,9 +385,9 @@ paths:
         schema:
             type: object
             required:
-              - publickey
+              - adb_key
             properties:
-              publickey:
+              adb_key:
                 type: string
                 description: adb public key (~/.android/id_rsa.pub)
               title:
@@ -368,7 +395,7 @@ paths:
                 description: By default will be extracted from public key
       responses:
         "200":
-          description: Add adb key response
+          description: Adb key added successfully
         default:
           description: Unexpected Error
           schema:
@@ -391,6 +418,12 @@ paths:
           description: >-
             Fields query parameter takes a comma seperated list of fields. Only
             listed field will be return in response
+          required: false
+          type: string
+        - name: selector
+          in: query
+          description: >-
+            Selector will be used to query device list from DB
           required: false
           type: string
       responses:
