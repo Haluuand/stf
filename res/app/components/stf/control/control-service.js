@@ -136,7 +136,7 @@ module.exports = function ControlServiceFactory(
     this.shell = function(command, timeout) {
       return sendTwoWay('shell.command', {
         command: command
-      , timeout: timeout||10000
+      , timeout: timeout||20000
       })
     }
 
