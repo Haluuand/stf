@@ -381,6 +381,8 @@
     "Users" : "用户",
     "Providers" : "设备组",
     "OK" : "确定",
-    "Performance Testing": "性能测试"
+    "Performance Testing": "性能测试",
+    "Tcpdump Operation": "tcpdump抓包",
+    "Tcpdump": "网络抓包"
   }
 }

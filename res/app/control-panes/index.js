@@ -17,6 +17,7 @@ module.exports = angular.module('control-panes', [
   require('./rom').name,
   require('./info').name,
   require('./performance-testing').name,
+  require('./tcpdump').name,
 ])
   .config(['$routeProvider', function($routeProvider) {
 

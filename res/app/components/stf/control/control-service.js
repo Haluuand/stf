@@ -305,21 +305,18 @@ module.exports = function ControlServiceFactory(
     }
 
     // 2019-01-22 added by HY 
-    this.startTcpdump = function(test) {
-      // @hy 2017-05-17 replace above json string to below test var
-      return sendOneWay('start', test)
-    }
-
-    // 2019-01-22 added by HY 
     this.startTcpdump = function(serial, timeout) {
+      console.log("+++ invoke control.startTcpdump")
       return sendTwoWay('tcpdump.start', {
         serial: serial
       , timeout: timeout||10000
       })
+    }
 
     // 2019-01-22 added by HY 
     this.stopTcpdump = function(serial, timeout) {
-      return sendOneWay('tcpdump.stop',{
+      console.log("+++ invoke control.stopTcpdump")
+      return sendTwoWay('tcpdump.stop',{
         serial: serial
       , timeout: timeout||10000
       })

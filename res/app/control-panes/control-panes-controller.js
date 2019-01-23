@@ -29,9 +29,9 @@ module.exports =
         filters: ['native', 'web']
       },
       {
-        title: gettext('Rom List'),
+        title: gettext('Tcpdump'),
         icon: 'fa-file-text color-green',
-        templateUrl: 'control-panes/rom/rom.pug',
+        templateUrl: 'control-panes/tcpdump/tcpdump.pug',
         filters: ['native', 'web']
       },
       {
@@ -80,7 +80,7 @@ module.exports =
           $scope.control = ControlService.create(device, device.channel)
 
           // TODO: Change title, flickers too much on Chrome
-          // $rootScope.pageTitle = device.name
+          $scope.pageTitle = device.name
 
           SettingsService.set('lastUsedDevice', serial)
 
