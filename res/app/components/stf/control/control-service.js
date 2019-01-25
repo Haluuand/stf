@@ -309,7 +309,7 @@ module.exports = function ControlServiceFactory(
       console.log("+++ invoke control.startTcpdump")
       return sendTwoWay('tcpdump.start', {
         serial: serial
-      , timeout: timeout||10000
+      , timeout: timeout||900000 // by default, user can capture packets within 15 min
       })
     }
 
@@ -318,7 +318,7 @@ module.exports = function ControlServiceFactory(
       console.log("+++ invoke control.stopTcpdump")
       return sendTwoWay('tcpdump.stop',{
         serial: serial
-      , timeout: timeout||10000
+      , timeout: timeout||20000
       })
     }
 

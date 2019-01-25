@@ -18,7 +18,6 @@ module.exports = function TcpdumpCtrl(
 
   $scope.startTcpdump = function(){
     console.log('+++ startTcdpump')
-    $scope.control.stopTcpdump();
     return $scope.control.startTcpdump(serial)
   }
 
