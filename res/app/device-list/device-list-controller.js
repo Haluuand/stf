@@ -37,14 +37,13 @@ module.exports = function DeviceListCtrl(
       name: 'romStatus'
     , selected: true
     }
-
+  , {
+      name: 'operator'
+    , selected: true  // @hy, 2017-05-09: true ==> false
+    }
   , {
       name: 'serial'
     , selected: true   // @hy, 2017-05-09: false ==> true
-    }
-  , {
-      name: 'operator'
-    , selected: false  // @hy, 2017-05-09: true ==> false
     }
   , {
       name: 'releasedAt'
@@ -132,7 +131,7 @@ module.exports = function DeviceListCtrl(
     }
     ,{
       name: 'presenceChangedAt'
-      ,selected: true
+      ,selected: false
     }
     ,{
       name: 'inventoryID'
