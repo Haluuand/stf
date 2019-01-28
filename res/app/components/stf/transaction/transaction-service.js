@@ -161,6 +161,7 @@ module.exports = function TransactionServiceFactory(socket, TransactionError) {
     this.done = function(message) {
       last = message.seq
       unplaced[message.seq] = message
+      console.log('+++++ this.done', message)
       readQueue()
     }
 

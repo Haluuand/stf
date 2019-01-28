@@ -305,19 +305,19 @@ module.exports = function ControlServiceFactory(
     }
 
     // 2019-01-22 added by HY 
-    this.startTcpdump = function(serial, timeout) {
-      console.log("+++ invoke control.startTcpdump")
+    this.startTcpdump = function(serial, id, timeout) {
       return sendTwoWay('tcpdump.start', {
-        serial: serial
+        id: id
+      , serial: serial
       , timeout: timeout||900000 // by default, user can capture packets within 15 min
       })
     }
 
     // 2019-01-22 added by HY 
-    this.stopTcpdump = function(serial, timeout) {
-      console.log("+++ invoke control.stopTcpdump")
+    this.stopTcpdump = function(serial, id, timeout) {
       return sendTwoWay('tcpdump.stop',{
-        serial: serial
+        id: id
+      , serial: serial
       , timeout: timeout||20000
       })
     }

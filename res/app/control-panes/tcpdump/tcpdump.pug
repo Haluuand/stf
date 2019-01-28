@@ -10,26 +10,28 @@ div.page-controller(ng-controller='TcpdumpCtrl')
        thead
         tr
           th.header.sortable ID
-          th.header.sortable 用户名
-          th.header.sortable 机型
-          th.header.sortable 状态
+          th.header.sortable 设备
           th.header.sortable 开始时间 
           th.header.sortable 结束时间           
-          th.header.sortable 控制
+          th.header.sortable 用户
+          th.header.sortable 状态
+          th.header.sortable 结果
+          th.header.sortable 说明
        tbody
         tr(ng-repeat='column in records')
-            td(ng-bind='column.id')
-            td(ng-bind='column.user')
-            td(ng-bind='column.model')
+            td(ng-bind='column.testID')
+            td(ng-bind='column.serial')
             td(ng-bind='column.startTime | date:"yyyy-MM-dd HH:mm:ss"')
-            td(ng-bind='column.endTime   | date:"yyyy-MM-dd HH:mm:ss"')
+            td(ng-bind='column.finishTime   | date:"yyyy-MM-dd HH:mm:ss"')
+            td(ng-bind='column.user')
             td
               i(ng-if='column.status=="Testing"').fa.fa-spinner.fa-spin.fa-1x.fa-fw
               i(ng-if='column.status=="Stop"').fa.fa-stop.color-red
-              i(ng-if='column.status=="Failed"').fa.fa-times.color-red
-              i(ng-if='column.status=="Finished"').fa.fa-check.color-green
+              i(ng-if='column.status=="fail"').fa.fa-times.color-red
+              i(ng-if='column.status=="success"').fa.fa-check.color-green
             td
-              a(ng-if='column.status == "Finished"',ng-href="{{column.url}}") 下载pcap
+              a(ng-if='column.status == "success" && column.action === "resp_stop_capture_packet"',ng-href="{{column.url}}") 下载pcap
+            td(ng-bind='column.comments')
         tr(ng-if='records.length===0')
             td(colspan=10) 暂无抓包 {{records.length}}
 

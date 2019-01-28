@@ -588,11 +588,13 @@ message StopTestMessage{
 }
 
 message StartTcpdumpMessage {
-  optional string serial = 1;
-  optional uint32 timeout = 2;
+  optional string id = 1;
+  optional string serial = 2;
+  optional uint32 timeout = 3;
 }
 
 message StopTcpdumpMessage {
-  optional string serial = 1;
-  optional uint32 timeout = 2;
+  optional string id = 1;
+  optional string serial = 2;
+  optional uint32 timeout = 3;
 }
